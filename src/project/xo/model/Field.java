@@ -18,12 +18,12 @@ public class Field {
 
     public Figure getFigure(final Point point) {
 
-        return points[point.getX()][point.getY()];
+        return points[point.getY()][point.getX()];
     }
 
     public void setFigure(final Figure figure, final Point point) {
 
-        points[point.getX()][point.getY()] = figure;
+        points[point.getY()][point.getX()] = figure;
     }
 
 }
