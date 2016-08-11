@@ -9,7 +9,9 @@ public class CurrentMoveController {
     public Figure currentMove(final Field field) {
         final int numberOfFigure = moveRow(field);
 
-        if (numberOfFigure % 2 == 0) {
+        if (numberOfFigure == field.getSize() * field.getSize()) {
+            return null;
+        } else if (numberOfFigure % 2 == 0) {
             return Figure.X;
         } else {
             return Figure.O;
