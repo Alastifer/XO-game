@@ -1,6 +1,6 @@
 package project.xo.controllers.exceptions;
 
-abstract class AbstractXOException extends Exception{
+abstract class AbstractXOException extends Exception {
 
 
 

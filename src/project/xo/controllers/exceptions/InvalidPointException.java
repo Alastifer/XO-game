@@ -1,6 +1,6 @@
 package project.xo.controllers.exceptions;
 
-public class InvalidPointException extends AbstractXOException{
+public class InvalidPointException extends AbstractXOException {
 
 
 
