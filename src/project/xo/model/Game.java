@@ -18,18 +18,22 @@ public class Game {
     }
 
     public String getGameName() {
+
         return gameName;
     }
 
     public Field getField() {
+
         return field;
     }
 
     public Player getPlayerX() {
+
         return playerX;
     }
 
     public Player getPlayerY() {
+
         return playerY;
     }
 
