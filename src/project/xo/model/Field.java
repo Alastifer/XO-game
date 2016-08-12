@@ -6,7 +6,7 @@ public class Field {
 
     private Figure[][] points;
 
-    public Field(int size) {
+    public Field(final int size) {
         this.size = size;
         this.points = new Figure[size][size];
     }
