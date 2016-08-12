@@ -8,13 +8,13 @@ public class Game {
 
     private final Player playerX;
 
-    private final Player playerY;
+    private final Player playerO;
 
-    public Game(final String gameName, final Field field, final Player playerX, final Player playerY) {
+    public Game(final String gameName, final Field field, final Player playerX, final Player playerO) {
         this.gameName = gameName;
         this.field = field;
         this.playerX = playerX;
-        this.playerY = playerY;
+        this.playerO = playerO;
     }
 
     public String getGameName() {
@@ -32,9 +32,9 @@ public class Game {
         return playerX;
     }
 
-    public Player getPlayerY() {
+    public Player getPlayerO() {
 
-        return playerY;
+        return playerO;
     }
 
 }
