@@ -9,9 +9,8 @@ import static org.junit.Assert.*;
 public class PointTest {
     @Test
     public void getX() throws Exception {
-        Random random = new Random();
-        final int trueX = random.nextInt();
-        Point point = new Point(trueX, 0);
+        final int trueX = new Random().nextInt();
+        final Point point = new Point(trueX, 0);
 
         assertEquals(trueX, point.getX());
 
@@ -19,9 +18,8 @@ public class PointTest {
 
     @Test
     public void getY() throws Exception {
-        Random random = new Random();
-        final int trueY = random.nextInt();
-        Point point = new Point(0, trueY);
+        final int trueY = new Random().nextInt();
+        final Point point = new Point(0, trueY);
 
         assertEquals(trueY, point.getY());
     }
