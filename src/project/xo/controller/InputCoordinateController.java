@@ -16,7 +16,7 @@ public class InputCoordinateController {
     }
 
     private void validCoordinate(final int n, final int fieldSize) throws InvalidPointException {
-        if (n < 0 || n >= fieldSize) {
+        if (n < 1 || n > fieldSize) {
             throw new InvalidPointException();
         }
     }
