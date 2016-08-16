@@ -1,6 +1,6 @@
-package project.xo.controllers;
+package project.xo.controller;
 
-import project.xo.controllers.exceptions.AlreadyOccupiedException;
+import project.xo.controller.exceptions.AlreadyOccupiedException;
 import project.xo.model.Field;
 import project.xo.model.Figure;
 import project.xo.model.Point;

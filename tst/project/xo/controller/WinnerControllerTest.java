@@ -1,4 +1,4 @@
-package project.xo.controllers;
+package project.xo.controller;
 
 import org.junit.Test;
 import project.xo.model.Field;
@@ -6,8 +6,6 @@ import project.xo.model.Figure;
 import project.xo.model.Point;
 
 import java.util.Random;
-
-import static org.junit.Assert.*;
 
 public class WinnerControllerTest {
     @Test

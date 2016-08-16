@@ -1,4 +1,4 @@
-package project.xo.controllers;
+package project.xo.controller;
 
 import project.xo.model.Field;
 import project.xo.model.Figure;

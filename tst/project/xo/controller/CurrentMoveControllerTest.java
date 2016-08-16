@@ -1,4 +1,4 @@
-package project.xo.controllers;
+package project.xo.controller;
 
 import org.junit.Test;
 import project.xo.model.Field;
