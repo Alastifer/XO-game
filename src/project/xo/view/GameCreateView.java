@@ -20,6 +20,7 @@ public class GameCreateView {
     }
 
     private void helloMessage() {
+
         System.out.println("Hello everybody!!! Now we will play in game \"XO\"");
     }
 
