@@ -7,8 +7,8 @@ import project.xo.model.Player;
 
 public class GameCreateController {
 
-    public Game gameCreate(final String fieldSize, final String nameX, final String nameO) throws NumberFormatException {
-        Field field = new Field(Integer.parseInt(fieldSize));
+    public Game gameCreate(final int fieldSize, final String nameX, final String nameO) {
+        Field field = new Field(fieldSize);
         Player playerX = new Player(nameX, Figure.X);
         Player playerO = new Player(nameO, Figure.O);
         String gameName = "XO-game";
