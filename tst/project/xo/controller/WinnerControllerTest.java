@@ -14,6 +14,8 @@ public class WinnerControllerTest {
         Field field = new Field(3);
         Figure figure = choice(field);
         Random random = new Random();
+        WinnerController winnerController = new WinnerController();
+        Figure winFigure;
         int x, y;
         int fieldSize = field.getSize();
 
@@ -28,13 +30,20 @@ public class WinnerControllerTest {
             }
 
             figure = choice(field);
+
+            winFigure = winnerController.getWinner(field);
+
+            if (winFigure != null) {
+                fieldView(field);
+                System.out.printf("\nWinner is figure: %s\n", winFigure);
+                return;
+            }
         }
 
         fieldView(field);
+        System.out.printf("\nNO WINNER!\n");
 
-        WinnerController winnerController = new WinnerController();
 
-        System.out.printf("\nWinner is figure: %s\n", winnerController.getWinner(field));
 
     }
 
@@ -42,6 +51,8 @@ public class WinnerControllerTest {
         int fieldSize = field.getSize();
         Figure figure;
         String delimiter = "|";
+
+        System.out.println();
 
         for (int i = 0; i < fieldSize; i++) {
             for (int j = 0; j < fieldSize; j++) {
