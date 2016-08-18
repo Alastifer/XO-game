@@ -1,3 +1,5 @@
+package project.xo;
+
 import project.xo.model.Game;
 import project.xo.view.ConsoleView;
 import project.xo.view.GameCreateView;
