@@ -8,12 +8,11 @@ import project.xo.controller.exceptions.AlreadyOccupiedException;
 import project.xo.controller.exceptions.InvalidPointException;
 import project.xo.model.*;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class ConsoleView {
 
-    public boolean gameView(final Game game) throws IOException, InterruptedException {
+    public boolean gameView(final Game game) {
 
         Field field = game.getField();
         String gameName = game.getGameName();
@@ -35,26 +34,9 @@ public class ConsoleView {
 
         setFig(currentPlayer, point, field);
 
-        clearConsole();
+        ClearConsoleView.clearConsole();
 
-        boolean winFlag = winnerView(field, currentPlayer, gameName);
-
-        if (winFlag) {
-            return false;
-        }
-
-        return true;
-    }
-
-    private void clearConsole() throws IOException, InterruptedException {
-        final String os = System.getProperty("os.name");
-
-        if (os.contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } else {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-        }
+        return !winnerView(field, currentPlayer, gameName);
     }
 
     private boolean winnerView(final Field field, final Player currentPlayer, final String gameName) {
@@ -77,19 +59,19 @@ public class ConsoleView {
 
         try {
             moveController.applyFigure(field, point, currentPlayer.getPlayerFigure());
-        } catch (AlreadyOccupiedException e) {
+        } catch (final AlreadyOccupiedException e) {
             System.out.println("Already occupied point!");
             Point newPoint = coordinate(field.getSize(), currentPlayer);
             setFig(currentPlayer, newPoint, field);
         }
     }
 
-    private Figure currentFigure(final Field field, final String gameName) throws IOException, InterruptedException {
+    private Figure currentFigure(final Field field, final String gameName) {
         CurrentMoveController currentMoveController = new CurrentMoveController();
         Figure figure = currentMoveController.currentMove(field);
 
         if (figure == null) {
-            clearConsole();
+            ClearConsoleView.clearConsole();
             gameNameView(gameName);
             fieldView(field);
             System.out.printf("NO WINNER!!!!\n\n");
@@ -109,10 +91,10 @@ public class ConsoleView {
             x = inputCoordinateController.enterCoordinate(fieldSize) - 1;
             System.out.print("y: ");
             y = inputCoordinateController.enterCoordinate(fieldSize) - 1;
-        } catch (InvalidPointException e) {
+        } catch (final InvalidPointException e) {
             System.out.printf("Invalid coordinate! Range of values for your field is 1 - %d\n", fieldSize);
             return coordinate(fieldSize, player);
-        } catch (InputMismatchException e) {
+        } catch (final InputMismatchException e) {
             System.out.printf("Invalid performance of coordinate! Coordinate is number from 1 to %d\n", fieldSize);
             return coordinate(fieldSize, player);
         }

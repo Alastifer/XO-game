@@ -4,32 +4,20 @@ import project.xo.controller.GameCreateController;
 import project.xo.controller.exceptions.FieldSizeException;
 import project.xo.model.Game;
 
-import java.io.IOException;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class GameCreateView {
 
-    public Game createView() throws IOException, InterruptedException {
-        clearConsole();
+    public Game createView() {
+        ClearConsoleView.clearConsole();
         helloMessage();
         int fieldSize = fieldSizeCreate();
         String playerXName = playerXCreate();
         String playerOName = playerOCreate();
-        clearConsole();
+        ClearConsoleView.clearConsole();
         return new GameCreateController().gameCreate(fieldSize, playerXName, playerOName);
 
-    }
-
-    private void clearConsole() throws IOException, InterruptedException {
-        final String os = System.getProperty("os.name");
-
-        if (os.contains("Windows")) {
-            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
-        } else {
-            System.out.print("\033[H\033[2J");
-            System.out.flush();
-        }
     }
 
     private void helloMessage() {
