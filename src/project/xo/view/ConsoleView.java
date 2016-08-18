@@ -8,11 +8,12 @@ import project.xo.controller.exceptions.AlreadyOccupiedException;
 import project.xo.controller.exceptions.InvalidPointException;
 import project.xo.model.*;
 
+import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class ConsoleView {
 
-    public boolean gameView(final Game game) {
+    public boolean gameView(final Game game) throws IOException, InterruptedException {
 
         Field field = game.getField();
         String gameName = game.getGameName();
@@ -23,7 +24,7 @@ public class ConsoleView {
         gameNameView(gameName);
         playersView(playerX, playerO);
         fieldView(field);
-        Figure currentFigure = currentFigure(field);
+        Figure currentFigure = currentFigure(field, gameName);
 
         if (currentFigure == null) {
             return false;
@@ -31,9 +32,12 @@ public class ConsoleView {
 
         Player currentPlayer = currentFigure == Figure.X ? playerX : playerO;
         Point point = coordinate(field.getSize(), currentPlayer);
+
         setFig(currentPlayer, point, field);
 
-        boolean winFlag = winnerView(field, currentPlayer);
+        clearConsole();
+
+        boolean winFlag = winnerView(field, currentPlayer, gameName);
 
         if (winFlag) {
             return false;
@@ -42,13 +46,25 @@ public class ConsoleView {
         return true;
     }
 
-    private boolean winnerView(final Field field, final Player currentPlayer) {
+    private void clearConsole() throws IOException, InterruptedException {
+        final String os = System.getProperty("os.name");
+
+        if (os.contains("Windows")) {
+            new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+        } else {
+            System.out.print("\033[H\033[2J");
+            System.out.flush();
+        }
+    }
+
+    private boolean winnerView(final Field field, final Player currentPlayer, final String gameName) {
         WinnerController winnerController = new WinnerController();
         Figure winFigure = winnerController.getWinner(field);
 
         if (winFigure != null) {
-            System.out.printf("\n\n%s, you are WIN!!!\n\n", currentPlayer.getName());
+            gameNameView(gameName);
             fieldView(field);
+            System.out.printf("\n%s, you are WIN!!!\n\n", currentPlayer.getName());
             return true;
         }
 
@@ -68,12 +84,15 @@ public class ConsoleView {
         }
     }
 
-    private Figure currentFigure(final Field field) {
+    private Figure currentFigure(final Field field, final String gameName) throws IOException, InterruptedException {
         CurrentMoveController currentMoveController = new CurrentMoveController();
         Figure figure = currentMoveController.currentMove(field);
 
         if (figure == null) {
-            System.out.println("NO WINNER!!!!");
+            clearConsole();
+            gameNameView(gameName);
+            fieldView(field);
+            System.out.printf("NO WINNER!!!!\n\n");
             return null;
         }
 
