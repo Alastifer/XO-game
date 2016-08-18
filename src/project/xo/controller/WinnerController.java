@@ -56,11 +56,7 @@ public class WinnerController {
 
         nextFigure = field.getFigure(nextPoint);
 
-        if (nowFigure != nextFigure) {
-            return false;
-        }
-
-        return checkWinner(field, nextPoint, pointGenerator);
+        return nowFigure == nextFigure && checkWinner(field, nextPoint, pointGenerator);
     }
 
     private void invalidPoint(final Point point, final Field field) throws InvalidPointException{
@@ -72,11 +68,7 @@ public class WinnerController {
     }
 
     private boolean checkXOrY(final int cor, final int fieldSize) {
-        if (cor < 0 || cor >= fieldSize) {
-            return false;
-        } else {
-            return true;
-        }
+        return !(cor < 0 || cor >= fieldSize);
     }
 
     private interface IPointGenerator {
