@@ -87,6 +87,7 @@ public class WinnerControllerTest {
     }
 
     private Figure choice(final Field field) {
+
         return new CurrentMoveController().currentMove(field);
     }
 

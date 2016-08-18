@@ -11,10 +11,10 @@ import static org.junit.Assert.*;
 
 public class CurrentMoveControllerTest {
 
-    private int numF;
-
     @Test
     public void currentMove() throws Exception {
+
+        int numF;
 
         for (int k = 0; k < 1_000_000; k++) {
             numF = 0;
@@ -44,6 +44,7 @@ public class CurrentMoveControllerTest {
     }
 
     private int choice(final Field field) {
+
         return new Random().nextInt(field.getSize() - 1) + 1 ;
     }
 
