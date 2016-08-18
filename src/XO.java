@@ -2,11 +2,9 @@ import project.xo.model.Game;
 import project.xo.view.ConsoleView;
 import project.xo.view.GameCreateView;
 
-import java.io.IOException;
-
 public class XO {
 
-    public static void main(String[] args) throws IOException, InterruptedException {
+    public static void main(String[] args) {
         boolean gameController = true;
         Game newGame = new GameCreateView().createView();
         
