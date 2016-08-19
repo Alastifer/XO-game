@@ -10,11 +10,11 @@ public class Game {
 
     private final Player playerO;
 
-    public Game(final String gameName, final Field field, final Player playerX, final Player playerO) {
-        this.gameName = gameName;
-        this.field = field;
-        this.playerX = playerX;
-        this.playerO = playerO;
+    private Game(final Builder builder) {
+        this.gameName = builder.getGameName();
+        this.field = builder.getField();
+        this.playerX = builder.getPlayerX();
+        this.playerO = builder.getPlayerO();
     }
 
     public String getGameName() {
@@ -35,6 +35,57 @@ public class Game {
     public Player getPlayerO() {
 
         return playerO;
+    }
+
+    public static class Builder {
+
+        private String gameName;
+
+        private Field field;
+
+        private Player playerX;
+
+        private Player playerO;
+
+        String getGameName() {
+            return gameName;
+        }
+
+        Field getField() {
+            return field;
+        }
+
+        Player getPlayerX() {
+            return playerX;
+        }
+
+        Player getPlayerO() {
+            return playerO;
+        }
+
+        public Builder gameName(final String gameName) {
+            this.gameName = gameName;
+            return this;
+        }
+
+        public Builder field(final Field field) {
+            this.field = field;
+            return this;
+        }
+
+        public Builder playerX(final Player playerX) {
+            this.playerX = playerX;
+            return this;
+        }
+
+        public Builder playerO(final Player playerO) {
+            this.playerO = playerO;
+            return this;
+        }
+
+        public Game build() {
+            return new Game(this);
+        }
     }
 
 }
