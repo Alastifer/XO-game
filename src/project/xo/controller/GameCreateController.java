@@ -13,7 +13,11 @@ public class GameCreateController {
         Player playerO = new Player(nameO, Figure.O);
         String gameName = "XO-game";
 
-        return new Game(gameName, field, playerX, playerO);
+        return new Game.Builder().gameName(gameName)
+                .field(field)
+                .playerX(playerX)
+                .playerO(playerO)
+                .build();
     }
 
 }

@@ -22,7 +22,12 @@ public class GameCreateControllerTest {
         Player expectedPlayerO = new Player(nameO, Figure.O);
 
         Game actualGame = gameCreateController.gameCreate(expectedFieldSize, nameX, nameO);
-        Game expectedGame = new Game(expectedGameName, new Field(expectedFieldSize), expectedPlayerX, expectedPlayerO);
+        Game expectedGame = new Game.Builder()
+                .gameName(expectedGameName)
+                .field(new Field(3))
+                .playerX(expectedPlayerX)
+                .playerO(expectedPlayerO)
+                .build();
 
         assertEquals(expectedGame.getGameName(), actualGame.getGameName());
         assertEquals(expectedGame.getField().getSize(), actualGame.getField().getSize());
