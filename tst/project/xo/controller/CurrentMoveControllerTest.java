@@ -11,6 +11,8 @@ import static org.junit.Assert.*;
 
 public class CurrentMoveControllerTest {
 
+    private int fieldSize;
+
     @Test
     public void currentMove() throws Exception {
 
@@ -23,9 +25,11 @@ public class CurrentMoveControllerTest {
             numF = 0;
 
             final Field field = new Field(3);
+            fieldSize = field.getSize();
             boolean flag = true;
-            for (int i = 0; i < choice(field); i++) {
-                for (int j = 0; j < choice(field); j++) {
+
+            for (int i = 0; i < choice(); i++) {
+                for (int j = 0; j < choice(); j++) {
                     if (flag) {
                         field.setFigure(Figure.X, new Point(j, i));
                         flag = false;
@@ -46,9 +50,9 @@ public class CurrentMoveControllerTest {
         }
     }
 
-    private int choice(final Field field) {
+    private int choice() {
 
-        return new Random().nextInt(field.getSize() - 1) + 1 ;
+        return new Random().nextInt(fieldSize - 1) + 1 ;
     }
 
 }
