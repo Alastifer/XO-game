@@ -9,15 +9,19 @@ import project.xo.model.Point;
 import java.util.Random;
 
 public class WinnerControllerTest {
+
+    private int fieldSize;
+
     @Test
     public void getWinner() throws Exception {
         final Field field = new Field(3);
         final Random random = new Random();
         final WinnerController winnerController = new WinnerController();
-        final int fieldSize = field.getSize();
         int x, y;
         Figure winFigure;
         Figure figure = choice(field);
+
+        fieldSize = field.getSize();
 
         while (figure != null) {
             x = random.nextInt(fieldSize);
@@ -47,7 +51,6 @@ public class WinnerControllerTest {
     }
 
     private void fieldView(final Field field) {
-        final int fieldSize = field.getSize();
         Figure figure;
         final String delimiter = "|";
         final String noFigure = " ";
@@ -66,7 +69,7 @@ public class WinnerControllerTest {
             }
 
             if (i < FINISH) {
-                fieldLine(fieldSize);
+                fieldLine();
             }
         }
 
@@ -74,7 +77,7 @@ public class WinnerControllerTest {
 
     }
 
-    private void fieldLine(final int fieldSize) {
+    private void fieldLine() {
         final String line = "-";
         final int numOfLine = fieldSize * 3 + (fieldSize - 1);
 
