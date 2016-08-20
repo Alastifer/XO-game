@@ -11,15 +11,18 @@ import java.util.Random;
 import static org.junit.Assert.*;
 
 public class MoveControllerTest {
+
+    private int fieldSize;
+
     @Test
     public void applyFigure() throws Exception {
         final MoveController moveController = new MoveController();
         final int LOOP = 10000;
 
         for (int i = 0; i < LOOP; i++) {
-            final int fieldSize = 10;
+            fieldSize = 10;
             final Field field = new Field(fieldSize);
-            final Point point = new Point(randPoint(fieldSize), randPoint(fieldSize));
+            final Point point = new Point(randPoint(), randPoint());
             final Figure trueFigure = Figure.X;
 
             initField(field);
@@ -34,23 +37,22 @@ public class MoveControllerTest {
         }
     }
 
-    private int randPoint(final int fieldSize) {
+    private int randPoint() {
 
         return new Random().nextInt(fieldSize);
     }
 
     private void initField(final Field field) {
-        final int fieldSize = field.getSize();
         final CurrentMoveController currentMoveController = new CurrentMoveController();
 
-        for (int i = 0; i < rand(fieldSize); i++) {
-            for (int j = 0; j < rand(fieldSize); j++) {
+        for (int i = 0; i < rand(); i++) {
+            for (int j = 0; j < rand(); j++) {
                 field.setFigure(currentMoveController.currentMove(field), new Point(j, i));
             }
         }
     }
 
-    private int rand(final int fieldSize) {
+    private int rand() {
 
         return new Random().nextInt(fieldSize - 1) + 1;
     }
