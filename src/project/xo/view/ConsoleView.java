@@ -12,40 +12,45 @@ import java.util.InputMismatchException;
 
 public class ConsoleView {
 
+    private int fieldSize;
+
+    private String gameName;
+
     public boolean gameView(final Game game) {
 
         final Field field = game.getField();
-        final String gameName = game.getGameName();
         final Player playerX = game.getPlayerX();
         final Player playerO = game.getPlayerO();
 
+        fieldSize = field.getSize();
+        gameName = game.getGameName();
 
-        gameNameView(gameName);
+        gameNameView();
         playersView(playerX, playerO);
         fieldView(field);
-        final Figure currentFigure = currentFigure(field, gameName);
+        final Figure currentFigure = currentFigure(field);
 
         if (currentFigure == null) {
             return false;
         }
 
         final Player currentPlayer = currentFigure == Figure.X ? playerX : playerO;
-        final Point point = coordinate(field.getSize(), currentPlayer);
+        final Point point = coordinate(currentPlayer);
 
         setFig(currentPlayer, point, field);
 
         ClearConsoleView.clearConsole();
 
-        return !winnerView(field, currentPlayer, gameName);
+        return !winnerView(field, currentPlayer);
     }
 
-    private boolean winnerView(final Field field, final Player currentPlayer, final String gameName) {
+    private boolean winnerView(final Field field, final Player currentPlayer) {
         final WinnerController winnerController = new WinnerController();
         final Figure winFigure = winnerController.getWinner(field);
 
         if (winFigure != null) {
             final String winMessage = String.format("\n%s, you are WIN!!!\n", currentPlayer.getName());
-            gameNameView(gameName);
+            gameNameView();
             fieldView(field);
             System.out.println(winMessage);
             return true;
@@ -63,19 +68,19 @@ public class ConsoleView {
         } catch (final AlreadyOccupiedException e) {
             final String errorMessage = "Already occupied point!";
             System.out.println(errorMessage);
-            final Point newPoint = coordinate(field.getSize(), currentPlayer);
+            final Point newPoint = coordinate(currentPlayer);
             setFig(currentPlayer, newPoint, field);
         }
     }
 
-    private Figure currentFigure(final Field field, final String gameName) {
+    private Figure currentFigure(final Field field) {
         final CurrentMoveController currentMoveController = new CurrentMoveController();
         final Figure figure = currentMoveController.currentMove(field);
 
         if (figure == null) {
             final String noWinnerMessage = "NO WINNER!!!!\n";
             ClearConsoleView.clearConsole();
-            gameNameView(gameName);
+            gameNameView();
             fieldView(field);
             System.out.println(noWinnerMessage);
             return null;
@@ -84,7 +89,7 @@ public class ConsoleView {
         return figure;
     }
 
-    private Point coordinate(final int fieldSize, final Player player) {
+    private Point coordinate(final Player player) {
         final int x, y;
         final String enterMessage = String.format("%s, please enter the coordinate for figure %s", player.getName(), player.getPlayerFigure());
 
@@ -99,17 +104,17 @@ public class ConsoleView {
         } catch (final InvalidPointException e) {
             final String errorMessage = String.format("Invalid coordinate! Range of values for your field is 1 - %d", fieldSize);
             System.out.println(errorMessage);
-            return coordinate(fieldSize, player);
+            return coordinate(player);
         } catch (final InputMismatchException e) {
             final String errorMessage = String.format("Invalid performance of coordinate! Coordinate is number from 1 to %d", fieldSize);
             System.out.println(errorMessage);
-            return coordinate(fieldSize, player);
+            return coordinate(player);
         }
 
         return new Point(x, y);
     }
 
-    private void gameNameView(final String gameName) {
+    private void gameNameView() {
         System.out.println(gameName);
         System.out.println();
     }
@@ -126,7 +131,6 @@ public class ConsoleView {
     }
 
     private void fieldView(final Field field) {
-        final int fieldSize = field.getSize();
         Figure figure;
         final String delimiter = "|";
         final String noFigure = " ";
@@ -142,7 +146,7 @@ public class ConsoleView {
             }
 
             if (i < fieldSize - 1) {
-                fieldLine(fieldSize);
+                fieldLine();
             }
         }
 
@@ -150,7 +154,7 @@ public class ConsoleView {
 
     }
 
-    private void fieldLine(final int fieldSize) {
+    private void fieldLine() {
         final String line = "-";
         final int numOfLine = fieldSize * 3 + (fieldSize - 1);
 
