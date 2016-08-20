@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class InputCoordinateController {
 
     public int enterCoordinate(final int fieldSize) throws InvalidPointException, InputMismatchException {
-        int n = new Scanner(System.in).nextInt();
+        final int n = new Scanner(System.in).nextInt();
 
         validCoordinate(n, fieldSize);
 
@@ -16,7 +16,9 @@ public class InputCoordinateController {
     }
 
     private void validCoordinate(final int n, final int fieldSize) throws InvalidPointException {
-        if (n < 1 || n > fieldSize) {
+        final int MIN = 1;
+
+        if (n < MIN || n > fieldSize) {
             throw new InvalidPointException();
         }
     }

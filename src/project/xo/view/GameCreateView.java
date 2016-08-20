@@ -9,35 +9,41 @@ import java.util.Scanner;
 
 public class GameCreateView {
 
+    private final int MIN = 3;
+    private final int MAX = 10;
+
     public Game createView() {
         ClearConsoleView.clearConsole();
         helloMessage();
-        int fieldSize = fieldSizeCreate();
-        String playerXName = playerXCreate();
-        String playerOName = playerOCreate();
+        final int fieldSize = fieldSizeCreate();
+        final String playerXName = playerXCreate();
+        final String playerOName = playerOCreate();
         ClearConsoleView.clearConsole();
         return new GameCreateController().gameCreate(fieldSize, playerXName, playerOName);
 
     }
 
     private void helloMessage() {
-
-        System.out.println("Hello everybody!!! Now we will play in game \"XO\"");
+        final String helloMessage = "Hello everybody!!! Now we will play in game \"XO\"";
+        System.out.println(helloMessage);
     }
 
     private int fieldSizeCreate() {
-        int fieldSize;
+        final int fieldSize;
+        final String enterMessage = "Enter size of the game field: ";
 
-        System.out.print("Enter size of the game field: ");
+        System.out.print(enterMessage);
 
         try {
             fieldSize = new Scanner(System.in).nextInt();
             sizeCheck(fieldSize);
         } catch (InputMismatchException e) {
-            System.out.println("Invalid performance of field size! Size is number from 3 to 10");
+            final String errorMessage = String.format("Invalid performance of field size! Size is number from %d to %d", MIN, MAX);
+            System.out.println(errorMessage);
             return fieldSizeCreate();
         } catch (FieldSizeException e) {
-            System.out.println("Invalid size of field! Enter value from 3 to 10");
+            final String errorMessage = String.format("Invalid size of field! Enter value from %d to %d", MIN, MAX);
+            System.out.println(errorMessage);
             return fieldSizeCreate();
         }
 
@@ -45,18 +51,20 @@ public class GameCreateView {
     }
 
     private void sizeCheck(final int fieldSize) throws FieldSizeException {
-        if (fieldSize < 3 || fieldSize > 10) {
+        if (fieldSize < MIN || fieldSize > MAX) {
             throw new FieldSizeException();
         }
     }
 
     private String playerXCreate() {
-        System.out.print("Enter name for player, who will play figure X: ");
+        final String enterMessage = "Enter name for player, who will play figure X: ";
+        System.out.print(enterMessage);
         return new Scanner(System.in).nextLine();
     }
 
     private String playerOCreate() {
-        System.out.print("Enter name for player, who will play figure O: ");
+        final String enterMessage = "Enter name for player, who will play figure O: ";
+        System.out.print(enterMessage);
         return new Scanner(System.in).nextLine();
 
     }

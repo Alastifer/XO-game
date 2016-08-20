@@ -7,31 +7,37 @@ import project.xo.model.Point;
 
 public class WinnerController {
 
+    private int fieldSize;
+
     public Figure getWinner(final Field field) {
-        final int fieldSize = field.getSize();
+        fieldSize = field.getSize();
+
+        final int START = 0;
+        final int FINISH = fieldSize - 1;
+        final int OFFSET = 1;
 
         //column
         for (int i = 0; i < fieldSize; i++) {
-            if (checkWinner(field, new Point(i, 0), p -> new Point(p.getX(), p.getY() + 1))) {
-                return field.getFigure(new Point(i, 0));
+            if (checkWinner(field, new Point(i, START), p -> new Point(p.getX(), p.getY() + OFFSET))) {
+                return field.getFigure(new Point(i, START));
             }
         }
 
         //row
         for (int i = 0; i < fieldSize; i++) {
-            if (checkWinner(field, new Point(0, i), p -> new Point(p.getX() + 1, p.getY()))) {
-                return field.getFigure(new Point(0, i));
+            if (checkWinner(field, new Point(START, i), p -> new Point(p.getX() + OFFSET, p.getY()))) {
+                return field.getFigure(new Point(START, i));
             }
         }
 
         //main diagonal
-        if (checkWinner(field, new Point(0, 0), p -> new Point(p.getX() + 1, p.getY() + 1))) {
-            return field.getFigure(new Point(0, 0));
+        if (checkWinner(field, new Point(START, START), p -> new Point(p.getX() + OFFSET, p.getY() + OFFSET))) {
+            return field.getFigure(new Point(START, START));
         }
 
         //diagonal
-        if (checkWinner(field, new Point(0, fieldSize - 1), p -> new Point(p.getX() + 1, p.getY() - 1))) {
-            return field.getFigure(new Point(0, fieldSize - 1));
+        if (checkWinner(field, new Point(START, FINISH), p -> new Point(p.getX() + OFFSET, p.getY() - OFFSET))) {
+            return field.getFigure(new Point(START, FINISH));
         }
 
         return null;
@@ -43,7 +49,7 @@ public class WinnerController {
         final Point nextPoint = pointGenerator.nextPoint(nowPoint);
 
         try {
-            invalidPoint(nextPoint, field);
+            invalidPoint(nextPoint);
         } catch (InvalidPointException e) {
             return true;
         }
@@ -59,16 +65,16 @@ public class WinnerController {
         return nowFigure == nextFigure && checkWinner(field, nextPoint, pointGenerator);
     }
 
-    private void invalidPoint(final Point point, final Field field) throws InvalidPointException{
-        final int fieldSize = field.getSize();
-
-        if (!checkXOrY(point.getX(), fieldSize) || !checkXOrY(point.getY(), fieldSize)) {
+    private void invalidPoint(final Point point) throws InvalidPointException{
+        if (!checkXOrY(point.getX()) || !checkXOrY(point.getY())) {
             throw new InvalidPointException();
         }
     }
 
-    private boolean checkXOrY(final int cor, final int fieldSize) {
-        return !(cor < 0 || cor >= fieldSize);
+    private boolean checkXOrY(final int cor) {
+        final int MIN = 0;
+
+        return !(cor < MIN || cor >= fieldSize);
     }
 
     private interface IPointGenerator {

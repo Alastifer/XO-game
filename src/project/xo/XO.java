@@ -8,7 +8,7 @@ public class XO {
 
     public static void main(String[] args) {
         boolean gameController = true;
-        Game newGame = new GameCreateView().createView();
+        final Game newGame = new GameCreateView().createView();
         
         while (gameController) {
             gameController = new ConsoleView().gameView(newGame);

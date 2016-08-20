@@ -7,11 +7,12 @@ import project.xo.model.Point;
 public class CurrentMoveController {
 
     public Figure currentMove(final Field field) {
+        final int DIFF = 2;
         final int numberOfFigure = moveRow(field);
 
         if (numberOfFigure == field.getSize() * field.getSize()) {
             return null;
-        } else if (numberOfFigure % 2 == 0) {
+        } else if (numberOfFigure % DIFF == 0) {
             return Figure.X;
         } else {
             return Figure.O;
