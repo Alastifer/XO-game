@@ -11,13 +11,13 @@ import java.util.Random;
 public class WinnerControllerTest {
     @Test
     public void getWinner() throws Exception {
-        Field field = new Field(3);
-        Figure figure = choice(field);
-        Random random = new Random();
-        WinnerController winnerController = new WinnerController();
-        Figure winFigure;
+        final Field field = new Field(3);
+        final Random random = new Random();
+        final WinnerController winnerController = new WinnerController();
+        final int fieldSize = field.getSize();
         int x, y;
-        int fieldSize = field.getSize();
+        Figure winFigure;
+        Figure figure = choice(field);
 
         while (figure != null) {
             x = random.nextInt(fieldSize);
@@ -34,37 +34,38 @@ public class WinnerControllerTest {
             winFigure = winnerController.getWinner(field);
 
             if (winFigure != null) {
+                final String winMessage = String.format("\nWinner is figure: %s", winFigure);
                 fieldView(field);
-                System.out.printf("\nWinner is figure: %s\n", winFigure);
+                System.out.println(winMessage);
                 return;
             }
         }
 
+        final String noWinnerMessage = "\nNO WINNER!";
         fieldView(field);
-        System.out.printf("\nNO WINNER!\n");
-
-
-
+        System.out.println(noWinnerMessage);
     }
 
     private void fieldView(final Field field) {
-        int fieldSize = field.getSize();
+        final int fieldSize = field.getSize();
         Figure figure;
-        String delimiter = "|";
+        final String delimiter = "|";
+        final String noFigure = " ";
+        final int FINISH = fieldSize - 1;
 
         System.out.println();
 
         for (int i = 0; i < fieldSize; i++) {
             for (int j = 0; j < fieldSize; j++) {
                 figure = field.getFigure(new Point(j, i));
-                System.out.print(" " + (figure == null ? " " : figure)  + " ");
+                System.out.print(noFigure + (figure == null ? noFigure : figure)  + noFigure);
 
-                if (j < fieldSize - 1) {
+                if (j < FINISH) {
                     System.out.print(delimiter);
                 }
             }
 
-            if (i < fieldSize - 1) {
+            if (i < FINISH) {
                 fieldLine(fieldSize);
             }
         }
@@ -74,8 +75,8 @@ public class WinnerControllerTest {
     }
 
     private void fieldLine(final int fieldSize) {
-        String line = "-";
-        int numOfLine = fieldSize * 3 + (fieldSize - 1);
+        final String line = "-";
+        final int numOfLine = fieldSize * 3 + (fieldSize - 1);
 
         System.out.println();
 

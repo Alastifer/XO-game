@@ -13,13 +13,14 @@ import static org.junit.Assert.*;
 public class MoveControllerTest {
     @Test
     public void applyFigure() throws Exception {
-        MoveController moveController = new MoveController();
+        final MoveController moveController = new MoveController();
+        final int LOOP = 10000;
 
-        for (int i = 0; i < 10000; i++) {
-            int fieldSize = 10;
-            Field field = new Field(fieldSize);
-            Point point = new Point(randPoint(fieldSize), randPoint(fieldSize));
-            Figure trueFigure = Figure.X;
+        for (int i = 0; i < LOOP; i++) {
+            final int fieldSize = 10;
+            final Field field = new Field(fieldSize);
+            final Point point = new Point(randPoint(fieldSize), randPoint(fieldSize));
+            final Figure trueFigure = Figure.X;
 
             initField(field);
 
@@ -39,8 +40,8 @@ public class MoveControllerTest {
     }
 
     private void initField(final Field field) {
-        int fieldSize = field.getSize();
-        CurrentMoveController currentMoveController = new CurrentMoveController();
+        final int fieldSize = field.getSize();
+        final CurrentMoveController currentMoveController = new CurrentMoveController();
 
         for (int i = 0; i < rand(fieldSize); i++) {
             for (int j = 0; j < rand(fieldSize); j++) {

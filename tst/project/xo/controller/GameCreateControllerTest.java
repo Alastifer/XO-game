@@ -11,18 +11,18 @@ import static org.junit.Assert.*;
 public class GameCreateControllerTest {
     @Test
     public void gameCreate() throws Exception {
-        GameCreateController gameCreateController = new GameCreateController();
+        final GameCreateController gameCreateController = new GameCreateController();
 
-        String nameX = "Alex";
-        String nameO = "Ira";
-        int expectedFieldSize = 3;
-        String expectedGameName = "XO-game";
+        final String nameX = "Alex";
+        final String nameO = "Ira";
+        final int expectedFieldSize = 3;
+        final String expectedGameName = "XO-game";
 
-        Player expectedPlayerX = new Player(nameX, Figure.X);
-        Player expectedPlayerO = new Player(nameO, Figure.O);
+        final Player expectedPlayerX = new Player(nameX, Figure.X);
+        final Player expectedPlayerO = new Player(nameO, Figure.O);
 
-        Game actualGame = gameCreateController.gameCreate(expectedFieldSize, nameX, nameO);
-        Game expectedGame = new Game.Builder()
+        final Game actualGame = gameCreateController.gameCreate(expectedFieldSize, nameX, nameO);
+        final Game expectedGame = new Game.Builder()
                 .gameName(expectedGameName)
                 .field(new Field(3))
                 .playerX(expectedPlayerX)

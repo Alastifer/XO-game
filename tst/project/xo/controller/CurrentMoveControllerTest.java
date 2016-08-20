@@ -16,10 +16,13 @@ public class CurrentMoveControllerTest {
 
         int numF;
 
-        for (int k = 0; k < 1_000_000; k++) {
+        final int DIFF = 2;
+        final int LOOP = 1_000_000;
+
+        for (int k = 0; k < LOOP; k++) {
             numF = 0;
 
-            Field field = new Field(3);
+            final Field field = new Field(3);
             boolean flag = true;
             for (int i = 0; i < choice(field); i++) {
                 for (int j = 0; j < choice(field); j++) {
@@ -37,7 +40,7 @@ public class CurrentMoveControllerTest {
 
             final CurrentMoveController currentMoveController = new CurrentMoveController();
 
-            final Figure trueFigure = numF % 2 == 0 ? Figure.X : Figure.O;
+            final Figure trueFigure = numF % DIFF == 0 ? Figure.X : Figure.O;
 
             assertEquals(trueFigure, currentMoveController.currentMove(field));
         }
