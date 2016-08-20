@@ -13,7 +13,7 @@ Tic-tac-toe (also known as noughts and crosses or Xs and Os) is a paper-and-penc
 
 #### From repository
 1. Download or clone repository
-2. Open terminal, go to the folder Xs-and-Os-master/src/project/xo/
+2. Open terminal, go to the folder: ``` Xs-and-Os-master/src/project/xo/```
 3. Compiling file XO.java: ``` javac XO.java```
 4. Then, start program with comand: ``` java XO```
 
