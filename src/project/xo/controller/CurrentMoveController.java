@@ -6,9 +6,11 @@ import project.xo.model.Point;
 
 public class CurrentMoveController {
 
+    private int numberOfFigure = 0;
+
     public Figure currentMove(final Field field) {
         final int DIFF = 2;
-        final int numberOfFigure = moveRow(field);
+        moveRow(field);
 
         if (numberOfFigure == field.getSize() * field.getSize()) {
             return null;
@@ -19,24 +21,18 @@ public class CurrentMoveController {
         }
     }
 
-    private int moveRow(final Field field) {
-        int numberOfFigure = 0;
-
+    private void moveRow(final Field field) {
         for (int i = 0; i < field.getSize(); i++) {
-            numberOfFigure = moveColumn(field, i, numberOfFigure);
+            moveColumn(field, i);
         }
-
-        return numberOfFigure;
     }
 
-    private int moveColumn(final Field field, final int row, int numberOfFigure) {
+    private void moveColumn(final Field field, final int row) {
         for (int i = 0; i < field.getSize(); i++) {
             if (field.getFigure(new Point(i, row)) != null) {
                 numberOfFigure++;
             }
         }
-
-        return numberOfFigure;
     }
 
 }
