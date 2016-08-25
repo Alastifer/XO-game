@@ -9,14 +9,13 @@ import project.xo.model.Player;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class GameCreateView {
+class GameCreateView {
 
     private final int MIN = 3;
     private final int MAX = 10;
 
-    public Game createView() {
+    Game createView() {
         ClearConsoleView.clearConsole();
-        helloMessage();
         final String gameName = "XO-game";
         final Field field = fieldCreate();
         final Player playerX = playerXCreate();
@@ -28,11 +27,6 @@ public class GameCreateView {
                 .playerX(playerX)
                 .playerO(playerO)
                 .build();
-    }
-
-    private void helloMessage() {
-        final String helloMessage = "Hello everybody!!! Now we will play in game \"XO\"";
-        System.out.println(helloMessage);
     }
 
     private Field fieldCreate() {
