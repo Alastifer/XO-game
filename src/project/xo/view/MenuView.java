@@ -41,10 +41,29 @@ public class MenuView {
                 while (gameController) {
                     gameController = new ConsoleView().gameView(newGame);
                 }
+
+                tryMore();
+
                 break;
 
             case EXIT:
                 break;
+        }
+    }
+
+    private void tryMore() {
+        System.out.println("Try more (Y or N)?");
+        final String more = new Scanner(System.in).nextLine();
+
+        if (more.equalsIgnoreCase("Y")) {
+            chooseOption(Options.NEW_GAME);
+        } else if (more.equalsIgnoreCase("N")) {
+            chooseOption(Options.EXIT);
+        } else {
+            ClearConsoleView.clearConsole();
+            final String errorMessage = "You need enter Y or N";
+            System.out.println(errorMessage);
+            tryMore();
         }
     }
 
