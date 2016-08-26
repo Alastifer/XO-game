@@ -12,12 +12,10 @@ public class Player {
     }
 
     public String getName() {
-
         return name;
     }
 
     public Figure getPlayerFigure() {
-
         return playerFigure;
     }
 }

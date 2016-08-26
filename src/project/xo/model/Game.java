@@ -18,22 +18,18 @@ public class Game {
     }
 
     public String getGameName() {
-
         return gameName;
     }
 
     public Field getField() {
-
         return field;
     }
 
     public Player getPlayerX() {
-
         return playerX;
     }
 
     public Player getPlayerO() {
-
         return playerO;
     }
 
@@ -48,22 +44,18 @@ public class Game {
         private Player playerO;
 
         String getGameName() {
-
             return gameName;
         }
 
         Field getField() {
-
             return field;
         }
 
         Player getPlayerX() {
-
             return playerX;
         }
 
         Player getPlayerO() {
-
             return playerO;
         }
 
@@ -88,7 +80,6 @@ public class Game {
         }
 
         public Game build() {
-
             return new Game(this);
         }
     }

@@ -1,7 +1,3 @@
 package project.xo.controller.exceptions;
 
-public class FieldSizeException extends AbstractXOException {
-
-
-
-}
+public class FieldSizeException extends AbstractXOException {}

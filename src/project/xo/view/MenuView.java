@@ -108,7 +108,9 @@ public class MenuView {
     }
 
     private enum Options {
+
         NEW_GAME, EXIT
+
     }
 
 }

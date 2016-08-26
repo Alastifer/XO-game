@@ -12,17 +12,14 @@ public class Field {
     }
 
     public int getSize() {
-
         return size;
     }
 
     public Figure getFigure(final Point point) {
-
         return points[point.getY()][point.getX()];
     }
 
     public void setFigure(final Figure figure, final Point point) {
-
         points[point.getY()][point.getX()] = figure;
     }
 

@@ -38,7 +38,6 @@ public class MoveControllerTest {
     }
 
     private int randPoint() {
-
         return new Random().nextInt(fieldSize);
     }
 
@@ -53,7 +52,6 @@ public class MoveControllerTest {
     }
 
     private int rand() {
-
         return new Random().nextInt(fieldSize - 1) + 1;
     }
 

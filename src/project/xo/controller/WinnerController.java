@@ -78,7 +78,6 @@ public class WinnerController {
     }
 
     private interface IPointGenerator {
-
         Point nextPoint(final Point point);
     }
 

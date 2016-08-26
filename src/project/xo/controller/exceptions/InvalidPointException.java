@@ -1,7 +1,3 @@
 package project.xo.controller.exceptions;
 
-public class InvalidPointException extends AbstractXOException {
-
-
-
-}
+public class InvalidPointException extends AbstractXOException {}

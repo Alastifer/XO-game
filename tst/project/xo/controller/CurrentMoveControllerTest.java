@@ -51,7 +51,6 @@ public class CurrentMoveControllerTest {
     }
 
     private int choice() {
-
         return new Random().nextInt(fieldSize - 1) + 1 ;
     }
 
